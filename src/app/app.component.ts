@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'skugalAssignment';
   commentsCollection : any = [];
   htmlContent = '';
+  loading :any
   database = getDatabase();
   config: AngularEditorConfig = {
     editable: true,
@@ -42,12 +43,14 @@ export class AppComponent implements OnInit {
     ]
   };
   ngOnInit() {
+    this.loading = true;
     this.getCurrentTime();
     this.fetchCommentsFromFirebase()
     console.log(this.database)
   }
 
   updateCommentWithTime() {
+    this.loading = true;
     let time = this.getCurrentTime();
     let comment = this.getComment();
     this.updateDataInFirebase(time, comment);
@@ -79,6 +82,9 @@ export class AppComponent implements OnInit {
   commentsReceived(comments:any){
     console.log(comments);
     this.commentsCollection =this.arrangeComments(comments);
+    setTimeout(()=>{
+      this.loading = false;
+    },500)
   }
   arrangeComments(comments:any){
     let arrayOfComments = []

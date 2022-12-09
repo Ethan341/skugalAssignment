@@ -1,10 +1,10 @@
 .header {  
-    margin-top: 100px;
+    margin-top: 15px;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 15px;
   }
   .html-header {
-    margin: 15px 0 5px;
+    margin: 5px 0 5px;
   }
   
   .html {
@@ -16,3 +16,22 @@
     max-height: 10rem;
     overflow: auto;
   }
+
+  .float-parent-element { 
+    width: 50%; 
+} 
+.float-child-element { 
+    float: left; 
+    width: 50%; 
+} 
+.red { 
+    background-color: red; 
+    margin-left: 50%; 
+    height: 100px; 
+} 
+.yellow { 
+    margin-left: 50%; 
+    height: 100px; 
+    background-color: yellow; 
+}
+

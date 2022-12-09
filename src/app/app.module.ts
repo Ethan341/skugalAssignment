@@ -14,6 +14,8 @@ import { getAnalytics } from "firebase/analytics";
 import { environment } from '../environments/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
+import { NgxLoadingModule } from "ngx-loading";
+
 // Initialize Firebase
 const app = initializeApp(environment.firebaseConfig);
 const analytics = getAnalytics(app);
@@ -28,7 +30,8 @@ const analytics = getAnalytics(app);
     HttpClientModule,
     FormsModule,
     AngularEditorModule,
-    NgbModule
+    NgbModule,
+    NgxLoadingModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,10 +1,36 @@
-<div class="container">
-  <header class="header">
-    <h1>Editor </h1> 
-  </header>
+<div class="my-container">
+  <ng-template #customLoadingTemplate>
+    <div class="custom-class">
+      <!-- <h3>Loading...</h3> -->
+    </div>
+  </ng-template>
+
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+  </ngx-loading>
+
+  <div class="container">
+    <header class="header">
+      <h1> SKUGAL Assignment </h1>
+    </header>
     <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
-  <h5 class="html-header">HTML Output</h5>
-  <div class="html">
-    {{ htmlContent }}
+    <h5 class="html-header">HTML Output</h5>
+    <div class="html">
+      {{ htmlContent }}
+    </div>
+    <div>
+      <button (click)="updateCommentWithTime()"> Submit </button>
+    </div>
+
+    <div *ngFor="let comment of commentsCollection">
+      <div class="float-child-element">
+        <span style="background-color: rgb(249, 249, 167);"> comment :: </span> <span
+          style="background-color: rgb(158, 158, 237) ">{{comment.comment}}</span>
+      </div>
+      <div class="float-child-element">
+        <span style="background-color: rgb(249, 249, 167);"> Time :: </span> <span style="background-color: rgb(158, 158, 237) ">{{comment.time}}</span>
+      </div>
+    </div>
   </div>
-  <p>
+
+</div>
+
