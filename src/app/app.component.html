@@ -20,17 +20,53 @@
     <div>
       <button (click)="updateCommentWithTime()"> Submit </button>
     </div>
-
-    <div *ngFor="let comment of commentsCollection">
-      <div class="float-child-element">
-        <span style="background-color: rgb(249, 249, 167);"> comment :: </span> <span
-          style="background-color: rgb(158, 158, 237) ">{{comment.comment}}</span>
-      </div>
-      <div class="float-child-element">
-        <span style="background-color: rgb(249, 249, 167);"> Time :: </span> <span style="background-color: rgb(158, 158, 237) ">{{comment.time}}</span>
-      </div>
+    <div id="htmlData" #htmlData>
+      <table>
+          <thead>
+            <tr >
+              <td>
+              <div class="float-child-element">
+                <span style="background-color: rgb(249, 249, 167);">Time  </span> 
+                <!-- <span style="background-color: rgb(158, 158, 237) ">{{comment.comment}}</span> -->
+              </div>
+              </td>
+              <td>
+                <div class="float-child-element">
+                  <span style="background-color: rgb(249, 249, 167);">  comment  </span> 
+                  <!-- <span style="background-color: rgb(158, 158, 237) ">{{comment.time}}</span> -->
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let comment of commentsCollection">
+              <td>
+              <div class="float-child-element">
+                <!-- <span style="background-color: rgb(249, 249, 167);"> comment :: </span>  -->
+                <span style="background-color: rgb(158, 158, 237) ">{{comment.time}}</span>
+              </div>
+              </td>
+              <td>
+                <div class="float-child-element">
+                  <!-- <span style="background-color: rgb(249, 249, 167);"> Time :: </span> -->
+                   <span style="background-color: rgb(158, 158, 237) ">{{comment.comment}}</span>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+      <!-- <div *ngFor="let comment of commentsCollection">
+        <div class="float-child-element">
+          <span style="background-color: rgb(249, 249, 167);"> comment :: </span> <span
+            style="background-color: rgb(158, 158, 237) ">{{comment.comment}}</span>
+        </div>
+        <div class="float-child-element">
+          <span style="background-color: rgb(249, 249, 167);"> Time :: </span> <span
+            style="background-color: rgb(158, 158, 237) ">{{comment.time}}</span>
+        </div>
+      </div> -->
     </div>
   </div>
+  <button (click)="downloadPDF()"> Download</button>
 
 </div>
-

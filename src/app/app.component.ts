@@ -1,13 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { getDatabase, ref, set, onValue } from "firebase/database";
 
+declare var require: any;
+
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+const htmlToPdfmake = require("html-to-pdfmake");
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+// //import jsPDF from 'jspdf';
+// import {jsPDF} from 'jspdf';
+// import  html2canvas from 'html2canvas'
+// import * as domtoimage from 'dom-to-image';
+// import * as FileSaver from 'file-saver';
+// import * as jsPDF from 'jspdf';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('htmlData')
+  pdfTable!: ElementRef;
   db = getDatabase();
   title = 'skugalAssignment';
   commentsCollection : any = [];
@@ -94,5 +108,13 @@ export class AppComponent implements OnInit {
       arrayOfComments.push(comments[singleComment]);
     }
     return arrayOfComments.sort().reverse();
+  }
+
+  // Dowload pdf code start
+   downloadPDF(){
+    const pdfTable = this.pdfTable.nativeElement;
+    var html = htmlToPdfmake(pdfTable.innerHTML);
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).download(); 
   }
 }
